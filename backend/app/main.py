@@ -1,5 +1,5 @@
 """
-UniResolve — Gen-AI Powered Unified Complaint Intelligence
+Themis — Gen-AI Powered Unified Complaint Intelligence
 Main FastAPI application
 """
 
@@ -66,7 +66,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="UniResolve API",
+    title="Themis API",
     description="Gen-AI Powered Unified Complaint Intelligence for Union Bank of India",
     version="1.0.0",
     docs_url="/docs",
@@ -98,7 +98,7 @@ app.include_router(complaints_router, prefix="/api")
 @app.get("/", tags=["health"])
 async def root():
     return {
-        "service": "UniResolve",
+        "service": "Themis",
         "status": "running",
         "version": "1.0.0",
         "docs": "/docs",

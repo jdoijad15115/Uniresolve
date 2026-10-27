@@ -1,5 +1,5 @@
 ﻿"""
-NLP & Multimodal Triage Service for UniResolve.
+NLP & Multimodal Triage Service for Themis.
 - Local Multimodal Fusion mode: WavLM + FinBERT + Gated Cross-Attention (TRIAGE_MODE=local)
 - LLM API fallback mode: Gemini/Claude API (TRIAGE_MODE=api)
 - Deterministic rule fallback when offline or during exceptions
@@ -61,7 +61,7 @@ RESPONSE_TEMPLATES = {
     Category.INSURANCE: "Dear Customer, we have registered your insurance complaint and will route it to the concerned team for review. Reference ID: {ref_id}",
     Category.INVESTMENT: "Dear Customer, we have received your investment-related concern and will have the specialist team review it. Reference ID: {ref_id}",
     Category.FRAUD:      "URGENT: Dear Customer, we take fraud reports extremely seriously. Your account has been flagged for immediate review. Please call our fraud helpline 1800-XXX-XXXX (24x7) immediately. Do NOT share any OTP or credentials. Reference ID: {ref_id}",
-    Category.GENERAL:    "Dear Customer, thank you for reaching out to UniResolve. Your complaint has been registered and will be addressed by our support team within 48 hours. Reference ID: {ref_id}",
+    Category.GENERAL:    "Dear Customer, thank you for reaching out to Themis. Your complaint has been registered and will be addressed by our support team within 48 hours. Reference ID: {ref_id}",
     Category.UPI:        "Dear Customer, we have registered your complaint regarding the UPI transaction failure. As per RBI guidelines, we are processing the status check and reversal. Reference ID: {ref_id}",
     Category.NETBANKING: "Dear Customer, we are looking into the net banking login/service issue. Our support team will review and resolve it at the earliest. Reference ID: {ref_id}",
     Category.ATM:        "Dear Customer, we acknowledge your ATM-related grievance. If cash was not dispensed but debited, a reversal will be processed as per RBI timelines. Reference ID: {ref_id}",
@@ -389,7 +389,7 @@ class TriageService:
 
         try:
             system_prompt = (
-                "You are an expert banking complaint triage AI for UniResolve. "
+                "You are an expert banking complaint triage AI for Themis. "
                 "Classify the customer complaint and identify key issues.\n"
                 "Respond with a strict JSON object containing keys: category, severity, sentiment, key_issue, key_issues, confidence, detected_language, severity_reason.\n"
                 f"Allowed Severities: {[s.value for s in Severity]}\n"

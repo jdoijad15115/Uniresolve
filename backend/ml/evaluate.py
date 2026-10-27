@@ -1,5 +1,5 @@
 """
-Comprehensive Evaluation Suite for UniResolve Multimodal Triage.
+Comprehensive Evaluation Suite for Themis Multimodal Triage.
 Runs Experiments E0 to E6:
 - E0: Current API Triage (Gemini/Claude, marked 'not run' if no key)
 - E1: TF-IDF + Logistic Regression
@@ -270,7 +270,7 @@ def plot_noise_robustness(snr_results: Dict[str, Dict[str, float]], output_path:
 
 def main():
     print("=" * 70)
-    print("UniResolve Multimodal Benchmark Evaluation Harness (E0 - E6)")
+    print("Themis Multimodal Benchmark Evaluation Harness (E0 - E6)")
     print("=" * 70)
 
     train_records = load_jsonl(DATA_DIR / "train.jsonl")
@@ -406,7 +406,7 @@ def main():
         json.dump(all_metrics, f, indent=2)
 
     # Generate RESULTS.md
-    results_md = f"""# UniResolve Multimodal Triage Benchmark Results
+    results_md = f"""# Themis Multimodal Triage Benchmark Results
 
 ## 1. Experimental Setup & Protocol
 - **Dataset Size**: 1,500 total balanced samples (70% Train [1,050], 15% Val [222], 15% Test [228]).

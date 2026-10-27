@@ -1,12 +1,12 @@
-﻿# UniResolve: Multimodal Complaint Intelligence Architecture
+﻿# Themis: Multimodal Complaint Intelligence Architecture
 
-This document specifies the end-to-end technical architecture, neural network modules, PII anonymization barrier, vector clustering engine, and dual-mode runtime deployment of the **UniResolve Multimodal Triage System**.
+This document specifies the end-to-end technical architecture, neural network modules, PII anonymization barrier, vector clustering engine, and dual-mode runtime deployment of the **Themis Multimodal Triage System**.
 
 ---
 
 ## 1. High-Level System Architecture
 
-UniResolve operates as an enterprise-grade multimodal grievance intelligence platform designed for commercial banking operations. It processes text complaints, speech recordings, and image attachments, applying automated PII anonymization, local multimodal neural fusion, semantic deduplication, and SLA compliance monitoring.
+Themis operates as an enterprise-grade multimodal grievance intelligence platform designed for commercial banking operations. It processes text complaints, speech recordings, and image attachments, applying automated PII anonymization, local multimodal neural fusion, semantic deduplication, and SLA compliance monitoring.
 
 ```mermaid
 flowchart TD
@@ -138,7 +138,7 @@ sequenceDiagram
 
 ## 4. Dual-Mode Deployment Strategy (`TRIAGE_MODE`)
 
-UniResolve supports flexible deployment configurations via the `TRIAGE_MODE` environment variable:
+Themis supports flexible deployment configurations via the `TRIAGE_MODE` environment variable:
 
 1. **`TRIAGE_MODE=local` (Default):**
    - Strictly offline, local CPU execution.

@@ -1,5 +1,5 @@
 ﻿"""
-Unit and Integration Tests for UniResolve Multimodal Triage System.
+Unit and Integration Tests for Themis Multimodal Triage System.
 Tests:
 1. PII Scrubbing on raw speech transcripts before database persistence.
 2. Multimodal Fusion Module tensor shapes and modality masking.

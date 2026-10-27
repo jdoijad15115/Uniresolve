@@ -1,4 +1,4 @@
-"""Mock Core Banking System (CBS) service for UniResolve.
+"""Mock Core Banking System (CBS) service for Themis.
 
 Provides simulated account lookup and transaction histories for demo and verification.
 """

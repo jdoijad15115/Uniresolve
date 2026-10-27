@@ -1,5 +1,5 @@
 """
-Text Encoder for UniResolve.
+Text Encoder for Themis.
 Encodes text complaints using SentenceTransformer / FinBERT embeddings (384-dim).
 """
 

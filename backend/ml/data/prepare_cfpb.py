@@ -1,5 +1,5 @@
 """
-Data preparation script for UniResolve Multimodal Triage.
+Data preparation script for Themis Multimodal Triage.
 Ingests CFPB complaint narratives, maps products to 6 unified categories,
 merges synthetic data for UPI and KYC, applies weak/gold severity rules,
 and produces a stratified 70/15/15 train/val/test split.

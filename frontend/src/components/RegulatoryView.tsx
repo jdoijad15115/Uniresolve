@@ -66,7 +66,7 @@ export default function RegulatoryView() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "uniresolve-regulatory-report.csv";
+      a.download = "themis-regulatory-report.csv";
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -79,7 +79,7 @@ export default function RegulatoryView() {
 
   const exportReport = () => {
     const rows = [
-      ["UniResolve - RBI Regulatory Report"],
+      ["Themis - RBI Regulatory Report"],
       ["Generated", new Date().toISOString()],
       [""],
       ["Metric", "Value"],
@@ -93,7 +93,7 @@ export default function RegulatoryView() {
     const encodedUri = encodeURI(csvContent);
     const a = document.createElement("a");
     a.href = encodedUri;
-    a.download = "uniresolve_summary_report.csv";
+    a.download = "themis_summary_report.csv";
     document.body.appendChild(a);
     a.click();
     a.remove();

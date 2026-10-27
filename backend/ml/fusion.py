@@ -1,5 +1,5 @@
 """
-Multimodal Fusion Modules & Classification Heads for UniResolve.
+Multimodal Fusion Modules & Classification Heads for Themis.
 Implements:
 1. EarlyConcat
 2. LateWeighted

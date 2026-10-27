@@ -1,5 +1,5 @@
 """
-Local Whisper ASR Service for UniResolve.
+Local Whisper ASR Service for Themis.
 Transcribes 16 kHz audio files on CPU/GPU.
 """
 

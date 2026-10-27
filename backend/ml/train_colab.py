@@ -1,5 +1,5 @@
 """
-UniResolve Multimodal Training Script for Google Colab (GPU / CPU).
+Themis Multimodal Training Script for Google Colab (GPU / CPU).
 Self-contained script to train and evaluate fusion models on Colab.
 """
 
@@ -12,7 +12,7 @@ import json
 import torch
 
 def run_colab_pipeline():
-    print("UniResolve Multimodal Triage - Colab Pipeline Initialized")
+    print("Themis Multimodal Triage - Colab Pipeline Initialized")
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Executing on compute device: {device}")
     

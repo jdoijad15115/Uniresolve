@@ -1,4 +1,4 @@
-"""Pydantic schemas for UniResolve complaints."""
+"""Pydantic schemas for Themis complaints."""
 
 from __future__ import annotations
 

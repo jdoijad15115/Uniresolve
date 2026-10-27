@@ -29,7 +29,7 @@ EMAIL_USERNAME = os.getenv("EMAIL_USERNAME")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 REDDIT_CLIENT_ID = os.getenv("REDDIT_CLIENT_ID")
 REDDIT_CLIENT_SECRET = os.getenv("REDDIT_CLIENT_SECRET")
-REDDIT_USER_AGENT = os.getenv("REDDIT_USER_AGENT", "uniresolve")
+REDDIT_USER_AGENT = os.getenv("REDDIT_USER_AGENT", "themis")
 
 SLA_HOURS = {
     "critical": 2,

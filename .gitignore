@@ -33,3 +33,7 @@ backend/ml/data/audio/
 backend/ml/data/cache/
 *.pt
 *.wav
+
+# dedup index is runtime state
+backend/faiss_index.bin
+backend/cluster_map.json

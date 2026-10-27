@@ -1,6 +1,6 @@
 """
 Script to generate the 120-item Evaluation Dataset (eval_set.jsonl)
-and matching ground-truth transactions (transactions.json) for UniResolve.
+and matching ground-truth transactions (transactions.json) for Themis.
 """
 
 import json

@@ -1,6 +1,6 @@
-# UniResolve Evaluation Dataset & Validation Harness
+# Themis Evaluation Dataset & Validation Harness
 
-This directory contains the ground-truth labeled evaluation harness and validation scripts for **UniResolve** (PS5: Unified Omnichannel Customer Grievance Ingestion and AI Triage System).
+This directory contains the ground-truth labeled evaluation harness and validation scripts for **Themis** (PS5: Unified Omnichannel Customer Grievance Ingestion and AI Triage System).
 
 ---
 

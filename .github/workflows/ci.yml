@@ -1,4 +1,4 @@
-name: UniResolve CI
+name: Themis CI
 
 on:
   push:
@@ -39,4 +39,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker image
-        run: docker build -t uniresolve-backend ./backend
+        run: docker build -t themis-backend ./backend

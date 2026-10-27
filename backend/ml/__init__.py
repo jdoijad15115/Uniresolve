@@ -1,1 +1,1 @@
-"""UniResolve Machine Learning Package for Multimodal Triage."""
+"""Themis Machine Learning Package for Multimodal Triage."""

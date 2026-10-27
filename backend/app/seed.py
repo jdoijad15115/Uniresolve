@@ -1,5 +1,5 @@
 """
-Curated Synthetic Dataset for UniResolve Demo.
+Curated Synthetic Dataset for Themis Demo.
 
 Contains an expanded, highly realistic enterprise dataset covering all product permutations:
 1. Systemic Outage Anomaly Cluster (exactly 5 unique customers triggering systemic outage alert on UPI)

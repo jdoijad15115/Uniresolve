@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "UniResolve - Agent Dashboard",
+  title: "Themis - Agent Dashboard",
   description: "Unified Customer Complaint Communication Dashboard",
 };
 

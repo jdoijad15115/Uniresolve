@@ -1,1 +1,1 @@
-"""Data preparation and synthetic audio generation for UniResolve ML."""
+"""Data preparation and synthetic audio generation for Themis ML."""

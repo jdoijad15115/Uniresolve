@@ -1,5 +1,5 @@
 """
-Training Harness for UniResolve Fusion Models.
+Training Harness for Themis Fusion Models.
 Trains:
 - E2: text-only
 - E3: audio-only
@@ -207,7 +207,7 @@ def train_model_experiment(
 
 def main():
     print("=" * 60)
-    print("UniResolve ML Model Training Pipeline (CPU/Frozen Encoders)")
+    print("Themis ML Model Training Pipeline (CPU/Frozen Encoders)")
     print("=" * 60)
 
     train_records = load_jsonl(DATA_DIR / "train.jsonl")

@@ -1,5 +1,5 @@
 """
-Offline Dataset Validation Harness for UniResolve.
+Offline Dataset Validation Harness for Themis.
 
 Asserts:
 1. Every record passes RawComplaintIn Pydantic schema validation.
@@ -34,7 +34,7 @@ from sentence_transformers import SentenceTransformer
 
 def validate_dataset():
     print("=" * 70)
-    print("UniResolve Dataset Validation Harness")
+    print("Themis Dataset Validation Harness")
     print("=" * 70)
 
     eval_jsonl = BASE_DIR / "eval" / "eval_set.jsonl"

@@ -7,6 +7,7 @@ Semantic Duplicate Detection & Clustering Service
 """
 
 import os
+import hashlib
 import uuid
 import logging
 import json
@@ -26,6 +27,12 @@ from app.config import SIMILARITY_THRESHOLD, CLUSTER_ALERT_THRESHOLD
 EMBEDDING_DIM = 384              # all-MiniLM-L6-v2 output size
 
 
+def _stable_hash(token: str) -> int:
+    # Python's built-in hash() is salted per process (PYTHONHASHSEED), so vectors saved in one
+    # run never matched the same text in the next run. A fixed digest keeps them comparable.
+    return int.from_bytes(hashlib.blake2b(token.encode("utf-8"), digest_size=8).digest(), "little")
+
+
 def _fallback_embed(text: str) -> np.ndarray:
     """Deterministic 384-dimensional normalized bag-of-words / char n-gram embedding fallback."""
     v = np.zeros(EMBEDDING_DIM, dtype=np.float32)
@@ -36,11 +43,11 @@ def _fallback_embed(text: str) -> np.ndarray:
         return v.reshape(1, -1)
 
     for word in words:
-        h = hash(word) % EMBEDDING_DIM
+        h = _stable_hash(word) % EMBEDDING_DIM
         v[h] += 1.0
         for i in range(len(word) - 2):
             gram = word[i:i+3]
-            h_gram = hash(gram) % EMBEDDING_DIM
+            h_gram = _stable_hash(gram) % EMBEDDING_DIM
             v[h_gram] += 0.5
 
     norm = np.linalg.norm(v)
@@ -93,17 +100,24 @@ class ClusteringService:
                 try:
                     self.index = faiss.read_index(str(INDEX_PATH))
                     saved = json.loads(MAP_PATH.read_text())
+                    if saved.get("encoder") != self._encoder_name():
+                        raise ValueError(f"index was built with encoder {saved.get('encoder')!r}, now using {self._encoder_name()!r}")
                     self.cluster_map = saved.get("cluster_map", {})
                     self.cluster_counts = saved.get("cluster_counts", {})
                     self.id_map = saved.get("id_map", [])
                     logger.info(f"Loaded FAISS index with {len(self.id_map)} embeddings.")
                 except Exception as e:
                     logger.warning(f"Could not load saved index: {e}. Starting fresh.")
+                    self.index = faiss.IndexFlatIP(EMBEDDING_DIM)
+                    self.cluster_map, self.cluster_counts, self.id_map = {}, {}, []
             logger.info("FAISS index ready.")
         except Exception as e:
             logger.warning(f"Could not load FAISS: {e}. Using in-memory cosine similarity matrix.")
             self.index = None
             self.numpy_embeddings = np.zeros((0, EMBEDDING_DIM), dtype=np.float32)
+
+    def _encoder_name(self) -> str:
+        return "all-MiniLM-L6-v2" if self.encoder is not None else "fallback-blake2b-v1"
 
     def _save_index(self):
         if self.use_qdrant and self.qdrant_ready:
@@ -115,7 +129,8 @@ class ClusteringService:
             MAP_PATH.write_text(json.dumps({
                 "cluster_map": self.cluster_map,
                 "cluster_counts": self.cluster_counts,
-                "id_map": self.id_map
+                "id_map": self.id_map,
+                "encoder": self._encoder_name(),
             }))
         except Exception as e:
             logger.warning(f"Could not save index: {e}")
@@ -236,7 +251,9 @@ class ClusteringService:
                     cand_id = cand["id"]
                     if cand_id == complaint_id:
                         continue
-                    cluster_id = self.cluster_map.get(cand_id, str(uuid.uuid4()))
+                    if store.get(cand_id) is None:
+                        continue  # stale index entry for a complaint that no longer exists
+                    cluster_id = self.cluster_map.get(cand_id, cand_id)
                     duplicate_reason = "systemic_similarity"
                     break
 

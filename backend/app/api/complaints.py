@@ -1,4 +1,4 @@
-"""Complaint API routes for UniResolve."""
+"""Complaint API routes for Themis."""
 
 import csv
 import io
@@ -1131,7 +1131,7 @@ async def regulatory_report_new(
     return Response(
         content=output.getvalue(),
         media_type="text/csv",
-        headers={"Content-Disposition": "attachment; filename=uniresolve-regulatory-report.csv"},
+        headers={"Content-Disposition": "attachment; filename=themis-regulatory-report.csv"},
     )
 
 

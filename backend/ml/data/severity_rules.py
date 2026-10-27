@@ -1,5 +1,5 @@
 """
-Severity Rules and Gold Annotation Dataset for UniResolve ML.
+Severity Rules and Gold Annotation Dataset for Themis ML.
 Provides weak supervision heuristics and curated gold annotations.
 """
 

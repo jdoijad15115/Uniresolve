@@ -1,6 +1,6 @@
-# UniResolve — Hackathon Demo Script (PS5)
+# Themis — Hackathon Demo Script (PS5)
 
-This script documents the exact click path and validation steps to demonstrate UniResolve's pillars of excellence to Union Bank judges.
+This script documents the exact click path and validation steps to demonstrate Themis's pillars of excellence to Union Bank judges.
 
 ---
 

@@ -260,7 +260,7 @@ export default function Page() {
             UR
           </div>
           <span className="text-md font-black tracking-tight text-white">
-            Uni<span className="text-blue-500">Resolve</span>
+            Them<span className="text-blue-500">is</span>
           </span>
         </div>
 
@@ -425,7 +425,7 @@ export default function Page() {
           {stats === null ? (
             <div className="flex flex-col items-center justify-center py-20 text-slate-500">
               <Loader2 className="h-8 w-8 animate-spin text-blue-600 mb-4" />
-              <p className="text-sm font-medium">Connecting to UniResolve secure portal...</p>
+              <p className="text-sm font-medium">Connecting to Themis secure portal...</p>
             </div>
           ) : (
             <>

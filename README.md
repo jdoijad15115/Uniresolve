@@ -1,7 +1,7 @@
-﻿# UniResolve: Multimodal AI Complaint Intelligence & Entity Resolution
+﻿# Themis: Multimodal AI Complaint Intelligence & Entity Resolution
 
 ## Overview
-UniResolve is an enterprise-grade multimodal grievance intelligence and business entity resolution platform designed for commercial banking operations. It processes customer complaints across text, audio recordings, and visual attachments into a unified dashboard, automatically scrubs sensitive PII, executes local multimodal neural fusion (WavLM + FinBERT + Gated Cross-Attention), detects systemic outage clusters with FAISS, tracks SLA breaches, and manages regulatory compliance workflows.
+Themis is an enterprise-grade multimodal grievance intelligence and business entity resolution platform designed for commercial banking operations. It processes customer complaints across text, audio recordings, and visual attachments into a unified dashboard, automatically scrubs sensitive PII, executes local multimodal neural fusion (WavLM + FinBERT + Gated Cross-Attention), detects systemic outage clusters with FAISS, tracks SLA breaches, and manages regulatory compliance workflows.
 
 ---
 

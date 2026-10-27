@@ -1,7 +1,7 @@
-# UniResolve Acoustic Recording Protocol & Test-Set Kit
+# Themis Acoustic Recording Protocol & Test-Set Kit
 
 ## 1. Overview
-This kit provides standardized instructions and prompt scripts for recording real human speech test clips to evaluate the UniResolve acoustic ASR and multimodal triage pipelines under real-world conditions.
+This kit provides standardized instructions and prompt scripts for recording real human speech test clips to evaluate the Themis acoustic ASR and multimodal triage pipelines under real-world conditions.
 
 ## 2. Recording Guidelines
 - **Format**: WAV, 16,000 Hz (16 kHz), 16-bit PCM, Mono channel.

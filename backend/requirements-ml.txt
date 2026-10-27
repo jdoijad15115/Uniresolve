@@ -1,4 +1,4 @@
-# ML dependencies for UniResolve local multimodal triage
+# ML dependencies for Themis local multimodal triage
 torch>=2.2.0
 transformers>=4.40.0
 torchaudio>=2.2.0

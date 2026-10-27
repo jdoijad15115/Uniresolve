@@ -1,5 +1,5 @@
 """
-Audio Encoder for UniResolve.
+Audio Encoder for Themis.
 Extracts frozen WavLM embeddings (768-dim) + Librosa acoustic prosody features (5-dim).
 Combined Audio Embedding Dimension: 773.
 """

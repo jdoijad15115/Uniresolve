@@ -1,5 +1,5 @@
 """
-Synthetic Audio Generator for UniResolve.
+Synthetic Audio Generator for Themis.
 Generates 16 kHz mono WAV audio with randomized speaking rates, pitches,
 and creates acoustic noise copies at SNR 20, 10, and 5 dB.
 """
