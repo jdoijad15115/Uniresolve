@@ -1,0 +1,418 @@
+{
+  "uid": "themis-overview",
+  "title": "Themis — Grievance Analytics",
+  "tags": [
+    "themis"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "refresh": "30s",
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Total complaints",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT COUNT(*) AS value FROM complaints",
+          "rawQueryText": "SELECT COUNT(*) AS value FROM complaints",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Open (not resolved)",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT COUNT(*) AS value FROM complaints WHERE status != 'resolved'",
+          "rawQueryText": "SELECT COUNT(*) AS value FROM complaints WHERE status != 'resolved'",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "SLA breached",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT COUNT(*) AS value FROM complaints WHERE sla_breached = 1",
+          "rawQueryText": "SELECT COUNT(*) AS value FROM complaints WHERE sla_breached = 1",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Systemic clusters (2+ customers)",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT COUNT(*) AS value FROM (SELECT cluster_id FROM complaints WHERE cluster_id IS NOT NULL GROUP BY cluster_id HAVING COUNT(DISTINCT customer_id) >= 2)",
+          "rawQueryText": "SELECT COUNT(*) AS value FROM (SELECT cluster_id FROM complaints WHERE cluster_id IS NOT NULL GROUP BY cluster_id HAVING COUNT(DISTINCT customer_id) >= 2)",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "background",
+        "graphMode": "none"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "type": "barchart",
+      "title": "Complaints by category",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT category, COUNT(*) AS complaints FROM complaints GROUP BY category ORDER BY complaints DESC",
+          "rawQueryText": "SELECT category, COUNT(*) AS complaints FROM complaints GROUP BY category ORDER BY complaints DESC",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "orientation": "auto",
+        "showValue": "auto",
+        "xTickLabelRotation": -30,
+        "legend": {
+          "showLegend": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "type": "piechart",
+      "title": "By severity",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT severity, COUNT(*) AS complaints FROM complaints GROUP BY severity",
+          "rawQueryText": "SELECT severity, COUNT(*) AS complaints FROM complaints GROUP BY severity",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": true
+        },
+        "pieType": "donut",
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "type": "barchart",
+      "title": "By channel",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 13,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT channel, COUNT(*) AS complaints FROM complaints GROUP BY channel ORDER BY complaints DESC",
+          "rawQueryText": "SELECT channel, COUNT(*) AS complaints FROM complaints GROUP BY channel ORDER BY complaints DESC",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "orientation": "auto",
+        "showValue": "auto",
+        "xTickLabelRotation": -30,
+        "legend": {
+          "showLegend": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "type": "barchart",
+      "title": "Daily complaint volume",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 13,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT substr(received_at, 1, 10) AS day, COUNT(*) AS complaints FROM complaints GROUP BY day ORDER BY day",
+          "rawQueryText": "SELECT substr(received_at, 1, 10) AS day, COUNT(*) AS complaints FROM complaints GROUP BY day ORDER BY day",
+          "timeColumns": []
+        }
+      ],
+      "options": {
+        "orientation": "auto",
+        "showValue": "auto",
+        "xTickLabelRotation": -30,
+        "legend": {
+          "showLegend": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "type": "table",
+      "title": "Systemic patterns: complaints sharing a cluster",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 22,
+        "w": 24,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT MIN(category) AS category, COUNT(*) AS complaints, COUNT(DISTINCT customer_id) AS customers, COUNT(DISTINCT channel) AS channels, SUM(sla_breached) AS sla_breached, MIN(substr(received_at,1,10)) AS first_seen FROM complaints WHERE cluster_id IS NOT NULL GROUP BY cluster_id HAVING COUNT(*) >= 2 ORDER BY customers DESC, complaints DESC",
+          "rawQueryText": "SELECT MIN(category) AS category, COUNT(*) AS complaints, COUNT(DISTINCT customer_id) AS customers, COUNT(DISTINCT channel) AS channels, SUM(sla_breached) AS sla_breached, MIN(substr(received_at,1,10)) AS first_seen FROM complaints WHERE cluster_id IS NOT NULL GROUP BY cluster_id HAVING COUNT(*) >= 2 ORDER BY customers DESC, complaints DESC",
+          "timeColumns": []
+        }
+      ],
+      "options": {},
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 10,
+      "type": "table",
+      "title": "SLA breach rate by category",
+      "datasource": {
+        "type": "frser-sqlite-datasource",
+        "uid": "themis-sqlite"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 31,
+        "w": 24,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "frser-sqlite-datasource",
+            "uid": "themis-sqlite"
+          },
+          "queryType": "table",
+          "queryText": "SELECT category, COUNT(*) AS complaints, SUM(sla_breached) AS breached, ROUND(100.0 * SUM(sla_breached) / COUNT(*), 1) AS breach_pct FROM complaints GROUP BY category ORDER BY breach_pct DESC, complaints DESC",
+          "rawQueryText": "SELECT category, COUNT(*) AS complaints, SUM(sla_breached) AS breached, ROUND(100.0 * SUM(sla_breached) / COUNT(*), 1) AS breach_pct FROM complaints GROUP BY category ORDER BY breach_pct DESC, complaints DESC",
+          "timeColumns": []
+        }
+      ],
+      "options": {},
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    }
+  ]
+}

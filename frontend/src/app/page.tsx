@@ -5,7 +5,7 @@ import { api, Complaint, Stats, GroupItem } from "@/lib/api";
 import { toast, Toaster } from "sonner";
 import { 
   Scale, AlertTriangle, ShieldCheck, Play, Pause, LogOut, 
-  LayoutDashboard, Layers, Timer, Activity, Network, FileText, PlusCircle, RotateCcw, HelpCircle, Loader2
+  LayoutDashboard, Layers, Timer, Activity, Network, FileText, FlaskConical, PlusCircle, RotateCcw, HelpCircle, Loader2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,7 @@ import AlertsView from "@/components/AlertsView";
 import AnalyticsView from "@/components/AnalyticsView";
 import ClustersView from "@/components/ClustersView";
 import RegulatoryView from "@/components/RegulatoryView";
+import ModelResultsView from "@/components/ModelResultsView";
 
 import DetailModal from "@/components/DetailModal";
 import IngestModal from "@/components/IngestModal";
@@ -248,6 +249,7 @@ export default function Page() {
     { id: "analytics", label: "Trend Analysis", icon: <Activity className="h-4 w-4" /> },
     { id: "clusters", label: "Cluster Analysis", icon: <Network className="h-4 w-4" /> },
     { id: "regulatory", label: "Regulatory Report", icon: <FileText className="h-4 w-4" /> },
+    { id: "results", label: "Model Results", icon: <FlaskConical className="h-4 w-4" /> },
   ];
 
   return (
@@ -257,7 +259,7 @@ export default function Page() {
         {/* Brand Logo */}
         <div className="h-16 flex items-center px-5 border-b border-slate-800 gap-2.5">
           <div className="w-7.5 h-7.5 rounded bg-blue-600 flex items-center justify-center text-white font-black text-sm">
-            UR
+            T
           </div>
           <span className="text-md font-black tracking-tight text-white">
             Them<span className="text-blue-500">is</span>
@@ -487,6 +489,9 @@ export default function Page() {
 
               {currentView === "regulatory" && (
                 <RegulatoryView />
+              )}
+              {currentView === "results" && (
+                <ModelResultsView />
               )}
             </>
           )}

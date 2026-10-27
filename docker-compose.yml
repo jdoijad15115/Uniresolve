@@ -59,5 +59,23 @@ services:
     volumes:
       - ./frontend:/usr/share/nginx/html:ro
 
+  # ── Grafana analytics (reads the backend's SQLite demo DB) ─────────────────
+  # Run on its own:  docker compose up grafana   ->  http://localhost:3001  (admin / admin)
+  grafana:
+    image: grafana/grafana-oss:11.2.0
+    container_name: themis_grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      GF_INSTALL_PLUGINS: frser-sqlite-datasource
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/themis.json
+    volumes:
+      - ./backend:/var/lib/themis:ro
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+
 volumes:
   pgdata:
